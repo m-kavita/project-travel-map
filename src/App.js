@@ -35,6 +35,7 @@ function App() {
   //checking map hover - 1
   useEffect(() => {
   if (!map.current) return;
+function initMap () => {
     map.current.on('load', () => {
     map.current.addSource('cbs', {
     'type': 'geojson',
@@ -74,6 +75,13 @@ function App() {
       },
       "filter": ["==", "name", ""]
     });
+ }
+ 
+ useEffect(() => 
+ if (!map.current) return; 
+ this.initMap()
+ 
+ )
 
   // When the user moves their mouse over the page, we look for features
   // at the mouse position (e.point) and within the states layer (states-fill).
