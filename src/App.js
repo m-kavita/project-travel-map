@@ -4,7 +4,7 @@ import './App.css';
 
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
-mapboxgl.accessToken = 'pk.eyJ1Ijoia2F2aXRhLW0iLCJhIjoiY2t6eHI1MDE5MDFxZzJ5czBkcGgxYnc3cSJ9.A_e5omC4geboxl5q00bJnQ';
+mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
 
 function App() {
   const mapContainer = useRef(null);
@@ -32,7 +32,7 @@ function App() {
     });
   });
 
-  function initMap() {
+  let initMap = () => {
     map.current.on('load', () => {
       map.current.addSource('cbs', {
       'type': 'geojson',
@@ -71,15 +71,16 @@ function App() {
             "fill-opacity": 0.5
         },
         "filter": ["==", "name", ""]
-      });
+      });  
+  });
+}
 
-   
-  }
+useEffect(() => {
+  if (!map.current) return; // wait for map to initialize
+  initMap();
+  });
 
-  //checking map hover - 1
-  useEffect(() => {
-  if (!map.current) return;
-});
+
 //end of map hover
 
   return (
