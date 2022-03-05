@@ -87,6 +87,7 @@ useEffect(() => {
     <div className="App">
       <div className="sidebar">
         Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+        Test
       </div>
 
       <div>
